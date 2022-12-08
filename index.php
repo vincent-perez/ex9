@@ -30,6 +30,13 @@ function print_array($a) {
  }
 
  if ( isset( $_POST['submit'] ) ) {
+        $phone = $_POST['phone'];
+        $pattern = "/^\(\d{3}\) \d{3}-\d{4}$/";
+            if (preg_match($pattern, $phone)) {
+        echo 'success';
+            }else {
+                echo "Error: The phone number you entered is not in the correct format. Please enter it in the format (xxx) xxx-xxxx.";
+            }
 		sanitize_form();
 		print_array( $_POST );
  }
@@ -80,6 +87,9 @@ function print_array($a) {
 					<div>
 						<label for="message">Your Message*:</label><br/>
 						<textarea name="message" required></textarea>
+					</div>
+                    <div>
+                    <input type="text" id="phone" name="phone" pattern="^\(\d{3}\) \d{3}-\d{4}$" />
 					</div>
 					<div><input type="submit" name="submit" value="Contact Me" /></div>
 				</form>
